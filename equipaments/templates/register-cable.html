@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+{% load static %}
+
+{% block title %} Editar cabo {% endblock %}
+
+{% block container_fluid %}
+
+    <h1>Editar cabo</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form|bootstrap }}
+        <button type="submit" class="btn btn-primary">Editar</button>
+
+        {% if cable %}
+            <a href="{% url 'equipaments:excluir-cabo' cable.id %}" class="btn btn-primary botao" tabindex="-1" role="button" aria-disabled="true">Excluir</a>
+        {% endif %}
+
+    </form>
+
+    {% endblock %}
+ 

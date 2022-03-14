@@ -1,0 +1,20 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 2px;
+}
+
+#divMap {
+  height: 300px;
+}
+
+#divMapIndex {
+  margin-top: auto;
+  align-items: center;
+  display: block;
+  width: 1910px;
+  height: 920px;
+  margin-left: auto;
+  border: 1px solid lightgrey;
+  
+}

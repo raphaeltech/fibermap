@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+{% load bootstrap %}
+
+
+{% block conteudo %}
+<link rel="stylesheet" href="{% static 'css/forms.css' %}">
+<link rel="stylesheet" href="{% static 'css/map.css' %}">
+
+
+    <div id="formulario" class="container-md">
+    <h1>Posicionar Postes</h1>
+    <form method="POST" style="width: 500px;">
+        {% csrf_token %}
+        {{ form|bootstrap }}
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mapa" onclick="start()" class="botao">
+        Clique aqui para carregar mapa
+        </button>
+        {% if pole %}
+        <a href="{% url 'inventory:excluir-position-poste' pole.id %}" class="btn btn-primary botao" tabindex="-1" role="button" aria-disabled="true">Excluir</a>
+        {% endif %}
+    </form>
+        
+</div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="mapa" tabindex="-1" aria-labelledby="mapa" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body" id="divMap">
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock conteudo %}

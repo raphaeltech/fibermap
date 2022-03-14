@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Confirmação de exclusão {% endblock %}
+
+{% block container_fluid %}
+    <form method="post">
+        {% csrf_token %}
+        <h2>Quer mesmo excluir esta caixa: <span> {{ box.description }} </span> ?</h2>
+        <button type="submit" class="btn btn-primary">Confirmar</button>
+    </form>
+
+{% endblock %}

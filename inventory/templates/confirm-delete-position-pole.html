@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+
+
+
+{% block conteudo %}
+<link rel="stylesheet" href="{% static 'css/forms.css' %}">
+<div id="formulario" class="container-md">   
+    <form method="post">
+        {% csrf_token %}
+        <h2>Esta certo de excluir o poste: {{ pole.identification }} ?</h2>
+        <button type="submit" class="btn btn-primary">Confirmar</button>
+    </form>
+
+</div>
+
+{% endblock conteudo%}
+
+
+    

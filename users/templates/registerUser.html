@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+{% load static %}
+
+{% block title %} Editar Usuario {% endblock %}
+
+{% block container_fluid %}
+
+
+<div class="container">
+  <h1>Editar Usúario</h1>
+  
+  <form action="{% url 'users:cadastrar-usuario' %}" method="POST" enctype="multipart/form-data" autocomplete="off">
+  
+  {% csrf_token %}
+  {{ form|bootstrap }}
+  <button type="submit" class="btn btn-primary">Cadastrar</button>
+
+</form>
+
+</div>
+
+    {% endblock %}

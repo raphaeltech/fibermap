@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+{% load static %}
+
+{% block title %} Editar spliter {% endblock %}
+
+{% block container_fluid %}
+
+    <h1>Editar spliter</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form|bootstrap }}
+        <button type="submit" class="btn btn-primary">Editar</button>
+
+        {% if spliter %}
+            <a href="{% url 'equipaments:excluir-spliter' spliter.id %}" class="btn btn-primary botao" tabindex="-1" role="button" aria-disabled="true">Excluir</a>
+        {% endif %}
+
+    </form>
+
+    {% endblock %}

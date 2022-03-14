@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+{% load static %}
+
+{% block title %} Editar ferragem {% endblock %}
+
+{% block container_fluid %}
+
+    <h1>Editar ferragem</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form|bootstrap }}
+        <button type="submit" class="btn btn-primary">Editar</button>
+
+        {% if steel %}
+            <a href="{% url 'equipaments:excluir-ferragem' steel.id %}" class="btn btn-primary botao" tabindex="-1" role="button" aria-disabled="true">Excluir</a>
+        {% endif %}
+
+    </form>
+
+    {% endblock %}
+ 
