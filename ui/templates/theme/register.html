@@ -42,7 +42,7 @@
                                     <input type="password" class="form-control form-control-user" id="conf_password" placeholder="Repeat Password" value="Wes@123">
                                 </div>
                             </div>
-                            <a href="{% url 'users:login_url' %}" class="btn btn-primary btn-user btn-block">
+                            <a href="{% url 'users:login' %}" class="btn btn-primary btn-user btn-block">
                             Register Account
                             </a>
                             <hr>
@@ -58,7 +58,7 @@
                             <a class="small" href="{% url 'users:forgot_password_url' %}">Forgot Password?</a>
                         </div>
                         <div class="text-center">
-                            <a class="small" href="{% url 'users:login_url' %}">Already have an account? Login!</a>
+                            <a class="small" href="{% url 'users:login' %}">Already have an account? Login!</a>
                         </div>
                     </div>
                 </div>

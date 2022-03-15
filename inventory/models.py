@@ -48,5 +48,55 @@ class positionSteels(models.Model):
 
     def __str__(self):
         return self.identification
+
+
+
+# Class refereces for views mysqls
     
-# Create your models here.
+class ceoprices(models.Model):
+    ceoModel_id = models.IntegerField()
+    description = models.CharField(max_length=256)
+    price = models.FloatField()
+
+    class Meta:
+        managed = False
+        db_table = 'ceoPrices'
+
+class ctoprices(models.Model):
+    ctoModel_id = models.IntegerField()
+    description = models.CharField(max_length=256)
+    price = models.FloatField()
+
+    class Meta:
+        managed = False
+        db_table = 'ctoPrices'
+
+class polepriceslocation(models.Model):
+    identification = models.IntegerField()
+    geolocation = models.CharField(max_length=256)
+    isLocate = models.BooleanField()
+    priceLocation = models.FloatField()
+
+    class Meta:
+        managed = False
+        db_table = 'polePricesLocation'
+
+class spliterprices(models.Model):
+    spliter1_id = models.IntegerField()
+    spliter2_id = models.IntegerField()
+    spliter3_id = models.IntegerField()
+    description = models.CharField(max_length=256)
+    price = models.FloatField()
+
+    class Meta:
+        managed = False
+        db_table = 'spliterPrices'
+
+class steelprices(models.Model):
+    modelSteel_id = models.IntegerField()
+    description = models.CharField(max_length=256)
+    price = models.FloatField()
+
+    class Meta:
+        managed = False
+        db_table = 'steelPrices'

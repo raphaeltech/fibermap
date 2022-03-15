@@ -29,7 +29,7 @@ urlpatterns = [
     path('', IndexView, name="index_url"),
     path('equipaments/', include('equipaments.urls', namespace="equipaments")),
     path('inventory/', include('inventory.urls', namespace="inventory")),
-    path('users/', include('users.urls', namespace="users")),
+    path('', include('users.urls', namespace="users")),
     
 ]
 

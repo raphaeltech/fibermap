@@ -9,7 +9,7 @@ app_name = "users"
 
 urlpatterns = [
    	# Login, Register, Forgot password, Logout
-    path('login/', LoginView, name="login_url"),
+    
     path('register/',RegisterView, name="register_url"),
     path('forgot-password/',ForgotPasswordView, name="forgot_password_url"),
     path('logout/',LogoutView, name="logout_url"),

@@ -46,8 +46,8 @@ INSTALLED_APPS = [
     'stdimage',
     
     # Fibermap apps
-    'equipaments',
-    'inventory',
+    'equipaments.apps.EquipamentsConfig',
+    'inventory.apps.InventoryConfig',
     'users.apps.UsersConfig',
 ]
 
@@ -147,5 +147,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "ui", "media")
 # User Model
 
 AUTH_USER_MODEL = "users.User"
+
+
+
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'index_url'
+LOGOUT_REDIRECT_URL = 'login'
 
 django_heroku.settings(locals())

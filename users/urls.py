@@ -4,40 +4,21 @@ from .views import  *
 from django.conf.urls.static import static
 
 
+from django.contrib.auth import views as auth_views
+
+
 app_name = "users"
 
 
 urlpatterns = [
    	# Login, Register, Forgot password, Logout
-    path('login/', LoginView, name="login_url"),
-    path('register/',RegisterView, name="register_url"),
-    path('forgot-password/',ForgotPasswordView, name="forgot_password_url"),
-    path('logout/',LogoutView, name="logout_url"),
+    path('login/', auth_views.LoginView.as_view(
+        template_name = 'login.html'
+    ), name="login"),
 
-    path('charts/',ChartsView, name="charts_url"),
-
-    path('tables/',TablesView, name="tables_url"),
-
-    path('buttons/',ButtonsView, name="buttons_url"),
-
-    path('cards/',CardsView, name="cards_url"),
-
-	path('page_not_found/',PageNotFoundView, name="page_not_found_url"),    
-
-	path('blank/',BlankView, name="blank_page_url"),    
-
-	# Utilities
-	path('colors/',ColorsView, name="colors_url"),    
-
-	path('borders/',BordersView, name="borders_url"),    
-
-	path('animations/',AnimationsView, name="animations_url"),    
-
-	path('others/',OthersView, name="others_url"),
-
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
 
     # Fibermap em uso
-
     path('mapaHome/',mapHomeView, name="mapHome"), 
     path('cadastrar-usuario/', registerUser, name="cadastrar-usuario"),
     path('lista-de-usuarios/',lisUsers,name="lista-de-usuarios"),

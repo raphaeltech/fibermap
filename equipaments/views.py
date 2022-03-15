@@ -1,6 +1,12 @@
 from django.shortcuts import redirect, render
+from django.urls import reverse, reverse_lazy
 from .models import boxs, cables, poles, spliters, steels
 from .forms import BoxForm, CableForm, SteelForm, PoleForm, SpliterForm
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+
+
+
 
 def list_boxs(request):
     box = boxs.objects.all()
