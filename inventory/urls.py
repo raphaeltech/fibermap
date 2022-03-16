@@ -1,28 +1,31 @@
 from django.urls import path
+from django.contrib import admin
 from .views import *
 
 app_name = 'inventory'
 
 urlpatterns = [
+    path('admin/', admin.site.urls),
+
     # Router for CEO
-    path('listar-ceos/',list_ceo,name='listar-ceos'),
-    path('posicionar-ceo/',position_ceo,name="posicionar-ceo"),
-    path('editar-ceo/<int:id>/',update_ceo,name='editar-ceo'),
-    path('excluir-ceo/<int:id>/',delete_ceo,name='excluir-ceo'),
+    path('posicionar/ceo/', createPositionCeo.as_view(), name="posicionarceo"), 
+    path('editar/ceo/<int:pk>', updatePositionCeo.as_view(), name="editarceo"),
+    path('excluir/ceo/<int:pk>', deletePositionCeo.as_view(), name="excluirceo"),
+    path('listar/ceos', listPositionCeo.as_view(), name="listarceos"),
     # Router for CTO
-    path('listar-ctos/',list_cto,name='listar-ctos'),
-    path('posicionar-cto/',position_cto,name="posicionar-cto"),
-    path('editar-cto/<int:id>/',update_cto,name='editar-cto'),
-    path('excluir-cto/<int:id>/',delete_cto,name='excluir-cto'),
-    # Router for Steel
-    path('listar-ferragens/',list_steel,name='listar-ferragens'),
-    path('posicionar-ferragem/',position_steel,name="posicionar-ferragem"),
-    path('editar-position-ferragem/<int:id>/',update_steel,name='editar-position-ferragem'),
-    path('excluir-position-ferragem/<int:id>/',delete_steel,name='excluir-position-ferragem'),
+    path('posicionar/cto/', createPositionCto.as_view(), name="posicionarcto"), 
+    path('editar/cto/<int:pk>', updatePositionCto.as_view(), name="editarcto"),
+    path('excluir/cto/<int:pk>', deletePositionCto.as_view(), name="excluircto"),
+    path('listar/ctos', listPositionCto.as_view(), name="listarctos"),
     # Router for Pole
-    path('listar-postes/',list_pole,name='listar-postes'),
-    path('posicionar-poste/',position_pole,name="posicionar-poste"),
-    path('editar-position-poste/<int:id>/',update_pole,name='editar-position-poste'),
-    path('excluir-position-poste/<int:id>/',delete_pole,name='excluir-position-poste'),
+    path('posicionar/poste/', createPositionPole.as_view(), name="posicionarposte"), 
+    path('editar/poste/<int:pk>', updatePositionPole.as_view(), name="editarposte"),
+    path('excluir/poste/<int:pk>', deletePositionPole.as_view(), name="excluirposte"),
+    path('listar/postes', listPositionPole.as_view(), name="listarpostes"),
+    # Router for Steel
+    path('posicionar/ferragem/', createPositionSteel.as_view(), name="posicionarferragem"), 
+    path('editar/ferragem/<int:pk>', updatePositionSteel.as_view(), name="editarferragem"),
+    path('excluir/ferragem/<int:pk>', deletePositionSteel.as_view(), name="excluirferragem"),
+    path('listar/ferragem', listPositionSteel.as_view(), name="listarferragens"),
 
 ]

@@ -1,142 +1,111 @@
 from django.shortcuts import redirect, render
-from .forms import PositionCTOForm, PositionCEOForm, PositionPoleForm, PositionSteelForm
 from .models import *
-from equipaments.models import boxs, spliters, poles, steels
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.list import ListView
+from django.urls import reverse_lazy
+# controle de usuario
+from django.contrib.auth.mixins import LoginRequiredMixin
 
+### Views para CEO ###
+class createPositionCeo(LoginRequiredMixin, CreateView):
+    login_url = reverse_lazy('users:login')
+    model = ceos
+    fields = ['identification', 'ceoModel', 'pole', 'numberTray', 'numberFusion']
+    template_name = 'form.html'
+    success_url = reverse_lazy('listarceos')
 
+class updatePositionCeo(LoginRequiredMixin, UpdateView):
+    login_url = reverse_lazy('users:login')
+    model = ceos
+    fields = ['identification', 'ceoModel', 'pole', 'numberTray', 'numberFusion']
+    template_name = 'form.html'
+    success_url = reverse_lazy('listarceos')
 
+class deletePositionCeo(LoginRequiredMixin, DeleteView):
+    login_url = reverse_lazy('users:login')
+    model = ceos
+    template_name = 'form-excluir.html'
+    success_url = reverse_lazy('listarceos')
 
-def list_ceo(request):
-    box = boxs.objects.all()
-    ceo = ceos.objects.all()
-    pole = positionPoles.objects.all()
-    return render(request, 'list-position-ceo.html', {'ceo': ceo, 'box': box, 'pole': pole} )
+class listPositionCeo(LoginRequiredMixin, ListView):
+    login_url = reverse_lazy('users:login')
+    model = ceos
+    template_name = 'ceolist.html'
 
-def position_ceo(request):
-    form = PositionCEOForm(request.POST or None)
-    
-    if form.is_valid():
-        form.save()
-        return redirect('inventory:listar-ceos')
-   
-    return render(request, 'position-ceo.html', {'form': form})
+### Views para CTO ###
+class createPositionCto(LoginRequiredMixin, CreateView):
+    login_url = reverse_lazy('users:login')
+    model = ctos
+    fields = ['identification', 'ctoModel', 'pole', 'spliter1', 'spliter2', 'spliter3', 'fusion', 'numberFusion']
+    template_name = 'form.html'
+    success_url = reverse_lazy('listarctos')
 
-def update_ceo(request, id):
-    ceo = ceos.objects.get(id = id)
-    form =  PositionCEOForm(request.POST or None, instance=ceo)
+class updatePositionCto(LoginRequiredMixin, UpdateView):
+    login_url = reverse_lazy('users:login')
+    model = ctos
+    fields = ['identification', 'ctoModel', 'pole', 'spliter1', 'spliter2', 'spliter3', 'fusion', 'numberFusion']
+    template_name = 'form.html'
+    success_url = reverse_lazy('listarctos')
 
-    if form.is_valid():
-        form.save()
-        return redirect('inventory:listar-ceos')
-    return render(request, 'position-ceo.html', {'form': form, 'ceo': ceo})
+class deletePositionCto(LoginRequiredMixin, DeleteView):
+    login_url = reverse_lazy('users:login')
+    model = ctos
+    template_name = 'form-excluir.html'
+    success_url = reverse_lazy('listarctos')
 
-def delete_ceo(request, id):
-    ceo = ceos.objects.get(id = id)
+class listPositionCto(LoginRequiredMixin, ListView):
+    login_url = reverse_lazy('users:login')
+    model = ctos
+    template_name = 'ctolist.html'
 
-    if request.method == 'POST':
-        ceo.delete()
-        return redirect('inventory:listar-ceos')
-    return render(request, 'confirm-delete-ceo.html', {'ceo': ceo})
+### Views para Postes ###
+class createPositionPole(LoginRequiredMixin, CreateView):
+    login_url = reverse_lazy('users:login')
+    model = positionPoles
+    fields = ['identification', 'geolocation', 'poleModel', 'isLocate', 'priceLocation']
+    template_name = 'form.html'
+    success_url = reverse_lazy('listarpostes')
 
-def list_cto(request):
-    box = boxs.objects.all()
-    pole = positionPoles.objects.all()
-    spliter = spliters.objects.all()
-    cto = ctos.objects.all()
-    return render(request, 'list-position-cto.html', {'cto': cto, 'box': box, 'spliter': spliter, 'pole': pole})
+class updatePositionPole(LoginRequiredMixin, UpdateView):
+    login_url = reverse_lazy('users:login')
+    model = positionPoles
+    fields = ['identification', 'geolocation', 'poleModel', 'isLocate', 'priceLocation']
+    template_name = 'form.html'
+    success_url = reverse_lazy('listarpostes')
 
-def position_cto(request):
-    form = PositionCTOForm(request.POST or None)
-    
-    if form.is_valid():
-        form.save()
-        return redirect('inventory:listar-ctos')
-   
-    return render(request, 'position-cto.html', {'form': form})
+class deletePositionPole(LoginRequiredMixin, DeleteView):
+    login_url = reverse_lazy('users:login')
+    model = positionPoles
+    template_name = 'form-excluir.html'
+    success_url = reverse_lazy('listarpostes')
 
-def update_cto(request, id):
-    cto = ctos.objects.get(id = id)
-    form =  PositionCTOForm(request.POST or None, instance=cto)
+class listPositionPole(LoginRequiredMixin, ListView):
+    login_url = reverse_lazy('users:login')
+    model = positionPoles
+    template_name = 'polelist.html'
 
-    if form.is_valid():
-        form.save()
-        return redirect('inventory:listar-ctos')
-    return render(request, 'position-cto.html', {'form': form, 'cto': cto})
+### Views para Ferragens ###
+class createPositionSteel(LoginRequiredMixin, CreateView):
+    login_url = reverse_lazy('users:login')
+    model = positionSteels
+    fields = ['identification', 'modelSteel', 'poleIdentification']
+    template_name = 'form.html'
+    success_url = reverse_lazy('listarferragens')
 
-def delete_cto(request, id):
-    cto = ctos.objects.get(id = id)
+class updatePositionSteel(LoginRequiredMixin, UpdateView):
+    login_url = reverse_lazy('users:login')
+    model = positionSteels
+    fields = ['identification', 'modelSteel', 'poleIdentification']
+    template_name = 'form.html'
+    success_url = reverse_lazy('listarferragens')
 
-    if request.method == 'POST':
-        cto.delete()
-        return redirect('inventory:listar-ctos')
-    return render(request, 'confirm-delete-cto.html', {'cto': cto})
+class deletePositionSteel(LoginRequiredMixin, DeleteView):
+    login_url = reverse_lazy('users:login')
+    model = positionSteels
+    template_name = 'form-excluir.html'
+    success_url = reverse_lazy('listarferragens')
 
-
-def list_pole(request):
-    positionPole = positionPoles.objects.all()
-    pole = poles.objects.all()
-    return render(request, 'list-position-pole.html', {'pole': pole, 'positionPole': positionPole})
-
-def position_pole(request):
-    form = PositionPoleForm(request.POST or None)
-    
-    if form.is_valid():
-        form.save()
-        return redirect('inventory:listar-postes')
-   
-    return render(request, 'position-pole.html', {'form': form})
-
-def update_pole(request, id):
-    pole = positionPoles.objects.get(id = id)
-
-    form =  PositionPoleForm(request.POST or None, instance=pole)
-
-    if form.is_valid():
-        form.save()
-        return redirect('inventory:listar-postes')
-    return render(request, 'position-pole.html', {'form': form, 'pole': pole})
-
-def delete_pole(request, id):
-    pole = positionPoles.objects.get(id = id)
-
-    if request.method == 'POST':
-        pole.delete()
-        return redirect('inventory:listar-postes')
-    return render(request, 'confirm-delete-position-pole.html', {'pole': pole})
-
-def list_steel(request):
-    positionPole = positionPoles.objects.all()
-    steel = positionSteels.objects.all()
-    modelSteel = steels.objects.all()
-
-    return render(request, 'list-position-steel.html', {'steel': steel, 'positionPole': positionPole, 'modelSteel': modelSteel})
-
-def position_steel(request):
-    form = PositionSteelForm(request.POST or None)
-    if form.is_valid():
-        form.save()
-        return redirect('inventory:listar-ferragens')
-   
-    return render(request, 'position-steel.html', {'form': form})
-
-def update_steel(request, id):
-    steel = positionSteels.objects.get(id = id)
-    form =  PositionSteelForm(request.POST or None, instance=steel)
-
-    if form.is_valid():
-        form.save()
-        return redirect('inventory:listar-ferragens')
-    return render(request, 'position-steel.html', {'form': form, 'steel': steel})
-
-def delete_steel(request, id):
-    steel = positionSteels.objects.get(id = id)
-
-    if request.method == 'POST':
-        steel.delete()
-        return redirect('inventory:listar-ferragens')
-    return render(request, 'confirm-delete-position-steel.html', {'steel': steel})
-
-
-
-
-# Create your views here.
+class listPositionSteel(LoginRequiredMixin, ListView):
+    login_url = reverse_lazy('users:login')
+    model = positionSteels
+    template_name = 'steellist.html'

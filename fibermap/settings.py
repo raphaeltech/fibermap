@@ -44,12 +44,16 @@ INSTALLED_APPS = [
     'rest_framework',
     'bootstrapform',
     'stdimage',
+    'crispy_forms',
     
     # Fibermap apps
     'equipaments.apps.EquipamentsConfig',
     'inventory.apps.InventoryConfig',
     'users.apps.UsersConfig',
 ]
+
+# Crispy forms
+CRISP_TEMPLATE_PACK = 'bootstrap'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -119,13 +123,15 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-br'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
 
 USE_L10N = True
+
+USE_TZ = True
 
 
 
@@ -149,9 +155,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "ui", "media")
 AUTH_USER_MODEL = "users.User"
 
 
-
 LOGIN_URL = 'login'
+LOGOUT_REDIRECT_URL = 'users:login'
 LOGIN_REDIRECT_URL = 'index_url'
-LOGOUT_REDIRECT_URL = 'login'
+
 
 django_heroku.settings(locals())

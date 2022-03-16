@@ -24,11 +24,7 @@
       <!-- Divider -->
       <hr class="sidebar-divider">
 
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        Interface
-      </div>
-
+      {% if request.user.is_authenticated %}
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
@@ -54,10 +50,10 @@
         </a>
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="{% url 'inventory:listar-ceos' %}">CEO</a>
-            <a class="collapse-item" href="{% url 'inventory:listar-ctos' %}">CTO</a>
-            <a class="collapse-item" href="{% url 'inventory:listar-postes' %}">Postes</a>
-            <a class="collapse-item" href="{% url 'inventory:listar-ferragens' %}">Ferragens</a>
+            <a class="collapse-item" href="{% url 'inventory:listarceos' %}">CEO</a>
+            <a class="collapse-item" href="{% url 'inventory:listarctos' %}">CTO</a>
+            <a class="collapse-item" href="{% url 'inventory:listarpostes' %}">Postes</a>
+            <a class="collapse-item" href="{% url 'inventory:listarferragens' %}">Ferragens</a>
           </div>
         </div>
       </li>
@@ -131,9 +127,11 @@
         </div>
       </li>
 
+      
+
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
-
+{% endif %}
       <!-- Sidebar Toggler (Sidebar) -->
       <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>

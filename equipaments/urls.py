@@ -1,10 +1,13 @@
 from unicodedata import name
+from django.contrib import admin
 from django.urls import path
 from .views import *
+
 
 app_name = 'equipaments'
 
 urlpatterns = [
+    path('admin/', admin.site.urls),
     path('listar-caixas/', list_boxs, name='listar-caixas'),
     path('cadastrar-caixa/', create_box, name='cadastrar-caixa'),
     path('editar-caixa/<int:id>/',update_box,name="editar-caixa"),

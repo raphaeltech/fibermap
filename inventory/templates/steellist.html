@@ -7,7 +7,7 @@
 
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h1 class="h3 mb-2 text-gray-800">Caixas de emendas ópticas (CEO) posicionadas</h1>
+            <h1 class="h3 mb-2 text-gray-800">Postes posicionados</h1>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -16,19 +16,31 @@
                         <tr>
                           <th>ID</th>
                           <th>Identificação</th>
+                          <th>Opções</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
                             <th>ID</th>
                             <th>Identificação</th>
+                            <th>Opções</th>
                         </tr>
                     </tfoot>
                     <tbody>
-                        {% for ceo in ceo %}
+                        {% for steel in object_list %}
                         <tr>
-                            <td>{{ ceo.id }}</td>
-                            <td><a href="{% url 'inventory:editar-ceo' ceo.id %}">{{ ceo.identification }}</a></td>
+                            <td>{{ steel.id }}</td>
+                            <td>{{ steel.identification }}</td>
+                            <td>
+                                Editar
+                                Exclui
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="3" align="center">
+                                Nenhuma <b>poste</b> registrada.
+                            </td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -39,11 +51,11 @@
 
     <div style="width: 100%; text-align: center;"></div>
       <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#positionceo">
-          Nova Caixa
+          Nova Ferragem
       </button>
     </div>
 
-    <form method="POST" action="{% url 'inventory:posicionar-ceo' %}">
+    <form method="POST" action="{% url 'inventory:posicionarferragem' %}">
     {% csrf_token %}
         <!-- Modal -->
         <div class="modal fade" id="positionceo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
