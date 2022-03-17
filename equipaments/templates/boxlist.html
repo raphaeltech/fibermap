@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Caixas {% endblock %}
+
+{% block container_fluid %}
+    
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h1 class="h3 mb-2 text-gray-800">Caixas Cadastrados</h1>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Descrição</th>
+                            <th>Modelo</th>
+                            <th>Fabricante</th>
+                            <th>Opções</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>ID</th>
+                            <th>Descrição</th>
+                            <th>Modelo</th>
+                            <th>Fabricante</th>
+                            <th>Opções</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        {% for box in object_list %}
+                        <tr>
+                            <td>{{ box.id }}</td>
+                            <td>{{ box.description }}</a></td>
+                            <td>{{ box.model }}</td>
+                            <td>{{ box.manufacturer }}</td>
+                            <td>
+                                Editar
+                                Exclui
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="5" align="center">
+                                Nenhum tipo de <b>Caixa</b> cadastrada.
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <div style="width: 100%; text-align: center;">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newbox">
+            Nova Caixa
+        </button>
+    </div>
+
+    <form method="post" action="{% url 'equipaments:cadastrarcaixa' %}">
+        {% csrf_token %}
+            <div class="modal fade" id="newbox" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Nova Caixa</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="inputGroup-sizing-default">Descrição</span>
+                                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="id_description" name="description">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="inputGroup-sizing-default">Modelo</span>
+                                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="id_model" name="model">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="inputGroup-sizing-default">Fabricante</span>
+                                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="id_manufacturer" name="manufacturer">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="inputGroup-sizing-default">Preço</span>
+                                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="id_price" name="price">
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="submit" class="btn btn-primary">Cadastrar</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+    </form>
+
+
+
+{% endblock %}
+
+{% block js_body %}
+<!-- Data Tables -->
+<script src="{% static 'vendor/datatables/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
+<script src="{% static 'js/demo/datatables-demo.js' %}"></script>
+{% endblock %}
+
+    

@@ -21,7 +21,7 @@ class SteelForm(forms.ModelForm):
 class PoleForm(forms.ModelForm):
     class Meta:
         model = poles
-        fields = ['description', 'model', 'type']
+        fields = ['type']
 
 class SpliterForm(forms.ModelForm):
     class Meta:

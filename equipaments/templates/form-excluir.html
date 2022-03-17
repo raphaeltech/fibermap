@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %} {% endblock %}
+
+{% block container_fluid %}
+<div class="container-fluid row mb-6">
+    <h1>Excluir registro</h1>
+    <p class="lead">
+      Confime para excluir registro definitivamente.
+    </p>
+    <hr>
+  <div class="container mb-8">
+    <form method="POST">
+      
+        <p>
+            Deseja excluir o registro: <b>{{ object }}</b>?
+        </p>
+
+    {% csrf_token %}
+    {{ form|crispy }}
+      
+    <div style="text-align: center;">
+      <button type="submit" class="btn btn-danger">Exclui</button>
+    </div>
+  </form>
+</div>
+</div>
+    {% endblock %}

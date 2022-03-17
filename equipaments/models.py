@@ -39,8 +39,6 @@ class steels(models.Model):
         return self.description
 
 class poles(models.Model):
-    description = models.CharField(null=True, blank=False, max_length=256, verbose_name="Descrição")
-    model = models.CharField(null=True, blank=False, max_length=256, verbose_name="Modelo")
     type = models.CharField(null=True, blank=False, max_length=256, verbose_name="Tipo")
     create_at = models.DateTimeField(auto_now_add=True, null=True, blank=False)
     update_at = models.DateTimeField(auto_now=True, blank=False, null=True)

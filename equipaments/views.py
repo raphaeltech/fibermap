@@ -1,161 +1,137 @@
-from django.shortcuts import redirect, render
 from django.urls import reverse, reverse_lazy
 from .models import boxs, cables, poles, spliters, steels
-from .forms import BoxForm, CableForm, SteelForm, PoleForm, SpliterForm
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.list import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+### Views para Boxs ###
+class createBox(LoginRequiredMixin, CreateView):
+    login_url = reverse_lazy('users:login')
+    model = boxs
+    fields = ['description', 'model', 'manufacturer', 'price']
+    template_name = 'form.html'
+    success_url = reverse_lazy('equipaments:listarcaixas')
 
+class updateBox(LoginRequiredMixin, UpdateView):
+    login_url = reverse_lazy('users:login')
+    model = boxs
+    fields = ['description', 'model', 'manufacturer', 'price']
+    template_name = 'form.html'
+    success_url = reverse_lazy('equipaments:listarcaixas')
 
+class deleteBox(LoginRequiredMixin, DeleteView):
+    login_url = reverse_lazy('users:login')
+    model = boxs
+    template_name = 'form-excluir.html'
+    success_url = reverse_lazy('equipaments:listarcaixas')
 
+class listBox(LoginRequiredMixin, ListView):
+    login_url = reverse_lazy('users:login')
+    model = boxs
+    template_name = 'boxlist.html'
 
-def list_boxs(request):
-    box = boxs.objects.all()
-    return render(request, 'list-boxs.html', {'box': box})
+### Views para Cables ###
+class createCable(LoginRequiredMixin, CreateView):
+    login_url = reverse_lazy('users:login')
+    model = cables
+    fields = ['description', 'model', 'manufacturer', 'priceForMetter', 'type']
+    template_name = 'form.html'
+    success_url = reverse_lazy('equipaments:listarcabos')
 
-def create_box(request):
-    form = BoxForm(request.POST or None)
-    
-    if form.is_valid():
-        form.save()
-        return redirect('equipaments:listar-caixas')
-   
-    return render(request, 'register-box.html', {'form': form})
+class updateCable(LoginRequiredMixin, UpdateView):
+    login_url = reverse_lazy('users:login')
+    model = cables
+    fields = ['description', 'model', 'manufacturer', 'priceForMetter', 'type']
+    template_name = 'form.html'
+    success_url = reverse_lazy('equipaments:listarcabos')
 
-def update_box(request, id):
-    box = boxs.objects.get(id = id)
-    form =  BoxForm(request.POST or None, instance=box)
+class deleteCable(LoginRequiredMixin, DeleteView):
+    login_url = reverse_lazy('users:login')
+    model = cables
+    template_name = 'form-excluir.html'
+    success_url = reverse_lazy('equipaments:listarcabos')
 
-    if form.is_valid():
-        form.save()
-        return redirect('equipaments:listar-caixas')
-    return render(request, 'register-box.html', {'form': form, 'box': box})
+class listCable(LoginRequiredMixin, ListView):
+    login_url = reverse_lazy('users:login')
+    model = cables
+    template_name = 'cablelist.html'
 
-def delete_box(request, id):
-    box = boxs.objects.get(id = id)
+### Views para Ferragens ###
+class createSteel(LoginRequiredMixin, CreateView):
+    login_url = reverse_lazy('users:login')
+    model = steels
+    fields = ['description', 'model', 'manufacturer', 'price']
+    template_name = 'form.html'
+    success_url = reverse_lazy('equipaments:listarferragens')
 
-    if request.method == 'POST':
-        box.delete()
-        return redirect('equipaments:listar-caixas')
-    return render(request, 'confirm-delete-box.html', {'box': box})
+class updateSteel(LoginRequiredMixin, UpdateView):
+    login_url = reverse_lazy('users:login')
+    model = steels
+    fields = ['description', 'model', 'manufacturer', 'price']
+    template_name = 'form.html'
+    success_url = reverse_lazy('equipaments:listarferragens')
 
-def list_cables(request):
-    cable = cables.objects.all()
-    return render(request, 'list-cable.html', {'cable': cable})
+class deleteSteel(LoginRequiredMixin, DeleteView):
+    login_url = reverse_lazy('users:login')
+    model = steels
+    template_name = 'form-excluir.html'
+    success_url = reverse_lazy('equipaments:listarferragens')
 
-def create_cable(request):
-    form = CableForm(request.POST or None)
-    
-    if form.is_valid():
-        form.save()
-        return redirect('equipaments:listar-cabos')
-   
-    return render(request, 'register-cable.html', {'form': form})
+class listSteel(LoginRequiredMixin, ListView):
+    login_url = reverse_lazy('users:login')
+    model = steels
+    template_name = 'steellist.html'
 
-def update_cable(request, id):
-    cable = cables.objects.get(id = id)
-    form =  BoxForm(request.POST or None, instance=cable)
+### Views para Postes ###
+class createPole(LoginRequiredMixin, CreateView):
+    login_url = reverse_lazy('users:login')
+    model = poles
+    fields = ['type']
+    template_name = 'form.html'
+    success_url = reverse_lazy('equipaments:listarpostes')
 
-    if form.is_valid():
-        form.save()
-        return redirect('equipaments:listar-cabos')
-    return render(request, 'register-cable.html', {'form': form, 'cable': cable})
+class updatePole(LoginRequiredMixin, UpdateView):
+    login_url = reverse_lazy('users:login')
+    model = poles
+    fields = ['type']
+    template_name = 'form.html'
+    success_url = reverse_lazy('equipaments:listarpostes')
 
-def delete_cable(request, id):
-    cable = cables.objects.get(id = id)
+class deletePole(LoginRequiredMixin, DeleteView):
+    login_url = reverse_lazy('users:login')
+    model = poles
+    template_name = 'form-excluir.html'
+    success_url = reverse_lazy('equipaments:listarpostes')
 
-    if request.method == 'POST':
-        cable.delete()
-        return redirect('equipaments:listar-cabos')
-    return render(request, 'confirm-delete-cable.html', {'cable': cable})
+class listPole(LoginRequiredMixin, ListView):
+    login_url = reverse_lazy('users:login')
+    model = poles
+    template_name = 'polelist.html'
 
-def list_poles(request):
-    pole = poles.objects.all()
-    return render(request, 'list-pole.html', {'pole': pole})
+### Views para Spliter ###
+class createSpliter(LoginRequiredMixin, CreateView):
+    login_url = reverse_lazy('users:login')
+    model = spliters
+    fields = ['description', 'model', 'manufacturer', 'type', 'price']
+    template_name = 'form.html'
+    success_url = reverse_lazy('equipaments:listarspliters')
 
-def create_pole(request):
-    form = PoleForm(request.POST or None)
-    
-    if form.is_valid():
-        form.save()
-        return redirect('equipaments:listar-postes')
-   
-    return render(request, 'register-pole.html', {'form': form})
+class updateSplite(LoginRequiredMixin, UpdateView):
+    login_url = reverse_lazy('users:login')
+    model = spliters
+    fields = ['description', 'model', 'manufacturer', 'type', 'price']
+    template_name = 'form.html'
+    success_url = reverse_lazy('equipaments:listarspliters')
 
-def update_pole(request, id):
-    pole = poles.objects.get(id = id)
-    form =  PoleForm(request.POST or None, instance=pole)
+class deleteSpliter(LoginRequiredMixin, DeleteView):
+    login_url = reverse_lazy('users:login')
+    model = spliters
+    template_name = 'form-excluir.html'
+    success_url = reverse_lazy('equipaments:listarspliters')
 
-    if form.is_valid():
-        form.save()
-        return redirect('equipaments:listar-postes')
-    return render(request, 'register-pole.html', {'form': form, 'pole': pole})
-
-def delete_pole(request, id):
-    pole = poles.objects.get(id = id)
-
-    if request.method == 'POST':
-        pole.delete()
-        return redirect('equipaments:listar-postes')
-    return render(request, 'confirm-delete-pole.html', {'pole': pole})
-
-def list_steels(request):
-    steel = steels.objects.all()
-    return render(request, 'list-steel.html', {'steel': steel})
-
-def create_steel(request):
-    form = SteelForm(request.POST or None)
-    
-    if form.is_valid():
-        form.save()
-        return redirect('equipaments:listar-ferragens')
-   
-    return render(request, 'register-steel.html', {'form': form})
-
-def update_steel(request, id):
-    steel = steels.objects.get(id = id)
-    form =  PoleForm(request.POST or None, instance=steel)
-
-    if form.is_valid():
-        form.save()
-        return redirect('equipaments:listar-ferragens')
-    return render(request, 'register-steel.html', {'form': form, 'steel': steel})
-
-def delete_steel(request, id):
-    steel = steels.objects.get(id = id)
-
-    if request.method == 'POST':
-        steel.delete()
-        return redirect('equipaments:listar-ferragens')
-    return render(request, 'confirm-delete-steel.html', {'steel': steel})
-
-def list_spliters(request):
-    spliter = spliters.objects.all()
-    return render(request, 'list-spliter.html', {'spliter': spliter})
-
-def create_spliter(request):
-    form = SpliterForm(request.POST or None)
-    
-    if form.is_valid():
-        form.save()
-        return redirect('equipaments:listar-spliters')
-   
-    return render(request, 'register-spliter.html', {'form': form})
-
-def update_spliter(request, id):
-    spliter = spliters.objects.get(id = id)
-    form =  SpliterForm(request.POST or None, instance=spliter)
-
-    if form.is_valid():
-        form.save()
-        return redirect('equipaments:listar-spliters')
-    return render(request, 'register-spliter.html', {'form': form, 'spliter': spliter})
-
-def delete_spliter(request, id):
-    spliter = spliters.objects.get(id = id)
-
-    if request.method == 'POST':
-        spliter.delete()
-        return redirect('equipaments:listar-spliters')
-    return render(request, 'confirm-delete-spliter.html', {'spliter': spliter})
+class listSpliter(LoginRequiredMixin, ListView):
+    login_url = reverse_lazy('users:login')
+    model = spliters
+    template_name = 'spliterlist.html'
 
 

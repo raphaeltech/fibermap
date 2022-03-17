@@ -8,24 +8,31 @@ app_name = 'equipaments'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('listar-caixas/', list_boxs, name='listar-caixas'),
-    path('cadastrar-caixa/', create_box, name='cadastrar-caixa'),
-    path('editar-caixa/<int:id>/',update_box,name="editar-caixa"),
-    path('excluir-caixa/<int:id>',delete_box,name="excluir-caixa"),
-    path('listar-cabos/', list_cables, name='listar-cabos'),
-    path('cadastrar-cabo/', create_cable, name='cadastrar-cabo'),
-    path('editar-cabo/<int:id>/',update_cable,name='editar-cabo'),
-    path('excluir-cabo/<int:id>',delete_cable,name='excluir-cabo'),
-    path('listar-postes/', list_poles, name='listar-postes'),
-    path('cadastrar-poste/', create_pole, name='cadastrar-poste'),
-    path('editar-poste/<int:id>/',update_pole,name='editar-poste'),
-    path('excluir-poste/<int:id>',delete_pole,name='excluir-poste'),
-    path('listar-ferragens/', list_steels, name='listar-ferragens'),
-    path('cadastrar-ferragem/', create_steel, name='cadastrar-ferragem'),
-    path('editar-ferragem/<int:id>/',update_steel,name='editar-ferragem'),
-    path('excluir-ferragem/<int:id>',delete_steel,name='excluir-ferragem'),
-    path('listar-spliters/', list_spliters, name='listar-spliters'),
-    path('cadastrar-spliter/', create_spliter, name='cadastrar-spliter'),
-    path('editar-spliter/<int:id>/',update_spliter,name='editar-spliter'),
-    path('excluir-spliter/<int:id>',delete_spliter,name='excluir-spliter'),
+
+    # Router for Boxs
+    path('cadastrar/caixa/', createBox.as_view(), name="cadastrarcaixa"), 
+    path('editar/caixa/<int:pk>', updateBox.as_view(), name="editarcaixa"),
+    path('excluir/caixa/<int:pk>', deleteBox.as_view(), name="excluircaixa"),
+    path('listar/caixas', listBox.as_view(), name="listarcaixas"),
+    # Router for Cables
+    path('cadastrar/cabo/', createCable.as_view(), name="cadastrarcabo"), 
+    path('editar/cabo/<int:pk>', updateCable.as_view(), name="editarcabo"),
+    path('excluir/cabo/<int:pk>', deleteCable.as_view(), name="excluircabo"),
+    path('listar/cabos/', listCable.as_view(), name="listarcabos"),
+    # Router for Polse
+    path('cadastrar/poste/', createPole.as_view(), name="cadastrarposte"), 
+    path('editar/poste/<int:pk>', updatePole.as_view(), name="editarposte"),
+    path('excluir/poste/<int:pk>', deletePole.as_view(), name="excluirposte"),
+    path('listar/poste/', listPole.as_view(), name="listarpostes"),
+    # Router for Steels
+    path('cadastrar/ferragem/', createSteel.as_view(), name="cadastrarferragem"), 
+    path('editar/ferragem/<int:pk>', updateSteel.as_view(), name="editarferragem"),
+    path('excluir/ferragem/<int:pk>', deleteSteel.as_view(), name="excluirferragem"),
+    path('listar/ferragens/', listSteel.as_view(), name="listarferragens"),
+    # Router for Spliters
+    path('cadastrar/spliter/', createSpliter.as_view(), name="cadastrarspliter"), 
+    path('editar/spliter/<int:pk>', updateSplite.as_view(), name="editarspliter"),
+    path('excluir/spliter/<int:pk>', deleteSpliter.as_view(), name="excluirspliter"),
+    path('listar/spliters/', listSpliter.as_view(), name="listarspliters"),
+
 ]
