@@ -1,6 +1,8 @@
 dj-database-url==0.5.0
 Django==2.2.6
 django-bootstrap-form==3.4
+django-crispy-forms==1.14.0
+django-google-maps==0.12.4
 django-heroku==0.3.1
 django-stdimage==5.3.0
 djangorestframework==3.10.3
