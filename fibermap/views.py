@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from inventory.models import *
 from django.db.models import Sum
-from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 def IndexView(request):

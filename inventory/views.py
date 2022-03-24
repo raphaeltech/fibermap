@@ -1,5 +1,3 @@
-from turtle import position
-from django.shortcuts import redirect, render
 from .models import *
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView

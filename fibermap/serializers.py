@@ -1,5 +1,4 @@
 from rest_framework import serializers
-from inventory.models import positionPoles
 
 class serializersPositionPoles(serializers.Serializer):
     pk = serializers.IntegerField(read_only=True)

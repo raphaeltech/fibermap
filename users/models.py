@@ -1,6 +1,4 @@
 from django.contrib.auth.models import AbstractUser
-from email.mime import image
-from django.db import models
 from stdimage.models import StdImageField
 
 class User(AbstractUser):  

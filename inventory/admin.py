@@ -2,7 +2,6 @@ from django.contrib import admin
 
 
 from django.contrib import admin
-from equipaments.models import boxs, cables, spliters, poles
 from inventory.models import positionPoles
 
 from django_google_maps import widgets as map_widgets
