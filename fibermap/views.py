@@ -1,4 +1,3 @@
-from tkinter.messagebox import NO
 from django.shortcuts import render
 from inventory.models import *
 from django.db.models import Sum
