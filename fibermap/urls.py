@@ -27,8 +27,8 @@ urlpatterns = [
 
     # Index
     path('', IndexView, name="index_url"),
-    path('equipaments/', include('equipaments.urls', namespace="equipaments")),
-    path('inventory/', include('inventory.urls', namespace="inventory")),
+    path('', include('equipaments.urls', namespace="equipaments")),
+    path('', include('inventory.urls', namespace="inventory")),
     path('', include('users.urls', namespace="users")),
     
 ]

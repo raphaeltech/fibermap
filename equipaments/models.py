@@ -44,7 +44,7 @@ class poles(models.Model):
     update_at = models.DateTimeField(auto_now=True, blank=False, null=True)
 
     def __str__(self):
-        return self.description
+        return self.type
 
 class spliters(models.Model):
     description = models.CharField(null=True, blank=False, max_length=256, verbose_name="Descrição")

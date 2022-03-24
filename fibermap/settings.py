@@ -45,12 +45,19 @@ INSTALLED_APPS = [
     'bootstrapform',
     'stdimage',
     'crispy_forms',
+    'django_google_maps',
+    
     
     # Fibermap apps
     'equipaments.apps.EquipamentsConfig',
     'inventory.apps.InventoryConfig',
     'users.apps.UsersConfig',
 ]
+
+# API Google Maps
+GOOGLE_MAPS_API_KEY = 'AIzaSyCWu2B5pBTVdWPry5HDnW7rhrnhuVWOMMM'
+
+
 
 # Crispy forms
 CRISP_TEMPLATE_PACK = 'bootstrap'

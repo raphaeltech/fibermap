@@ -6,6 +6,9 @@ document.addEventListener("DOMContentLoaded", function () {
       "https://maps.googleapis.com/maps/api/js?key=AIzaSyB9RIjP1NM54CF0_jpt4tGyX0QbGaxxc8A&region=BR&language=pt-br";
     document.getElementsByTagName("head")[0].appendChild(externalFile);
   });
+
+
+ 
   
   
   

@@ -9,14 +9,14 @@ class createBox(LoginRequiredMixin, CreateView):
     login_url = reverse_lazy('users:login')
     model = boxs
     fields = ['description', 'model', 'manufacturer', 'price']
-    template_name = 'form.html'
+    template_name = 'equipamentform.html'
     success_url = reverse_lazy('equipaments:listarcaixas')
 
 class updateBox(LoginRequiredMixin, UpdateView):
     login_url = reverse_lazy('users:login')
     model = boxs
     fields = ['description', 'model', 'manufacturer', 'price']
-    template_name = 'form.html'
+    template_name = 'equipamentform.html'
     success_url = reverse_lazy('equipaments:listarcaixas')
 
 class deleteBox(LoginRequiredMixin, DeleteView):
@@ -35,14 +35,14 @@ class createCable(LoginRequiredMixin, CreateView):
     login_url = reverse_lazy('users:login')
     model = cables
     fields = ['description', 'model', 'manufacturer', 'priceForMetter', 'type']
-    template_name = 'form.html'
+    template_name = 'equipamentform.html'
     success_url = reverse_lazy('equipaments:listarcabos')
 
 class updateCable(LoginRequiredMixin, UpdateView):
     login_url = reverse_lazy('users:login')
     model = cables
     fields = ['description', 'model', 'manufacturer', 'priceForMetter', 'type']
-    template_name = 'form.html'
+    template_name = 'equipamentform.html'
     success_url = reverse_lazy('equipaments:listarcabos')
 
 class deleteCable(LoginRequiredMixin, DeleteView):
@@ -61,14 +61,14 @@ class createSteel(LoginRequiredMixin, CreateView):
     login_url = reverse_lazy('users:login')
     model = steels
     fields = ['description', 'model', 'manufacturer', 'price']
-    template_name = 'form.html'
+    template_name = 'equipamentform.html'
     success_url = reverse_lazy('equipaments:listarferragens')
 
 class updateSteel(LoginRequiredMixin, UpdateView):
     login_url = reverse_lazy('users:login')
     model = steels
     fields = ['description', 'model', 'manufacturer', 'price']
-    template_name = 'form.html'
+    template_name = 'equipamentform.html'
     success_url = reverse_lazy('equipaments:listarferragens')
 
 class deleteSteel(LoginRequiredMixin, DeleteView):
@@ -87,14 +87,14 @@ class createPole(LoginRequiredMixin, CreateView):
     login_url = reverse_lazy('users:login')
     model = poles
     fields = ['type']
-    template_name = 'form.html'
+    template_name = 'equipamentform.html'
     success_url = reverse_lazy('equipaments:listarpostes')
 
 class updatePole(LoginRequiredMixin, UpdateView):
     login_url = reverse_lazy('users:login')
     model = poles
     fields = ['type']
-    template_name = 'form.html'
+    template_name = 'equipamentform.html'
     success_url = reverse_lazy('equipaments:listarpostes')
 
 class deletePole(LoginRequiredMixin, DeleteView):
@@ -120,7 +120,7 @@ class updateSplite(LoginRequiredMixin, UpdateView):
     login_url = reverse_lazy('users:login')
     model = spliters
     fields = ['description', 'model', 'manufacturer', 'type', 'price']
-    template_name = 'form.html'
+    template_name = 'equipamentform.html'
     success_url = reverse_lazy('equipaments:listarspliters')
 
 class deleteSpliter(LoginRequiredMixin, DeleteView):

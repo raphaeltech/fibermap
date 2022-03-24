@@ -1,3 +1,4 @@
+from turtle import position
 from django.shortcuts import redirect, render
 from .models import *
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -11,7 +12,7 @@ class createPositionCeo(LoginRequiredMixin, CreateView):
     login_url = reverse_lazy('users:login')
     model = ceos
     fields = ['identification', 'ceoModel', 'pole', 'numberTray', 'numberFusion']
-    template_name = 'form.html'
+    template_name = 'equipamentform.html'
     success_url = reverse_lazy('listarceos')
 
 class updatePositionCeo(LoginRequiredMixin, UpdateView):
@@ -82,7 +83,7 @@ class deletePositionPole(LoginRequiredMixin, DeleteView):
 class listPositionPole(LoginRequiredMixin, ListView):
     login_url = reverse_lazy('users:login')
     model = positionPoles
-    template_name = 'polelist.html'
+    template_name = 'positionpolelist.html'
 
 ### Views para Ferragens ###
 class createPositionSteel(LoginRequiredMixin, CreateView):

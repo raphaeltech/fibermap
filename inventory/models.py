@@ -1,4 +1,5 @@
 from django.db import models
+from django_google_maps import fields as map_fields
 
 class ctos(models.Model):
     identification = models.CharField(max_length=256,null=False, blank=False, verbose_name="Identificação")
@@ -28,8 +29,9 @@ class ceos(models.Model):
         return self.identification
 
 class positionPoles(models.Model):
+    
     identification = models.CharField(max_length=256,null=False, blank=False, verbose_name="Identificação")
-    geolocation = models.CharField(max_length=100, verbose_name="Geolocalização")
+    geolocation = map_fields.GeoLocationField(max_length=100)
     poleModel = models.ForeignKey("equipaments.poles", on_delete=models.CASCADE, default=1, verbose_name="Modelo do Poste")
     isLocate = models.BooleanField(null=True, blank=True, verbose_name='Alugado')
     priceLocation = models.FloatField(null=True, blank=True, verbose_name="Valor da locação")
